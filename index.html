@@ -1,0 +1,42 @@
+<html>
+<head>
+	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+</head>
+<body style="width:100%; height:100%; padding:0; margin:0;">
+	<form id="url_ids" style="margin-block-end:0px; height:4%; padding:0 0 0 5px;">
+		<input type="text" size=70 id="ids"/>
+		<input type="submit"/>
+	</form>
+	<div>
+		<iframe 
+			id='f0'
+			width='100%' 
+			height='48%' 
+			frameborder='0' 
+			allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' 
+			allowfullscreen></iframe>
+			
+		<iframe 
+			id='f1'
+			width='100%' 
+			height='48%' 
+			frameborder='0' 
+			allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' 
+			allowfullscreen></iframe>
+	</div>
+	<script>
+		$("#url_ids").submit(function(event) {
+			event.preventDefault();
+			var frames = ["#f0", "#f1"];
+			var ids = $("#ids").val().split(",");
+			var embed = "https://www.youtube.com/embed/";
+			for(var i = 0; i < 2 && i < ids.length; i++) {
+				var src = embed + ids[i].replace("https://youtu.be/", "");
+				if(src != $(frames[i]).attr("src"))
+					$(frames[i]).attr("src", src);
+			}
+		});
+	
+	</script>
+</body>
+</html>
